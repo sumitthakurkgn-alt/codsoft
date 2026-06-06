@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumit Thakur | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#060910;
+  --card:#0d1220;
+  --border:#1e2a3a;
+  --text:#e6edf3;
+  --muted:#7a8a9a;
+  --accent:#00e5b0;
+  --accent2:#7c5cfc;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; scroll-behavior:smooth; }
+
+body{ background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+body::before{
+  content:""; position:fixed;
+  width:500px; height:500px;
+  background:radial-gradient(circle, rgba(0,229,176,.12), transparent 70%);
+  top:-150px; right:-100px; z-index:-1; pointer-events:none;
+}
+body::after{
+  content:""; position:fixed;
+  width:400px; height:400px;
+  background:radial-gradient(circle, rgba(124,92,252,.10), transparent 70%);
+  bottom:-100px; left:-100px; z-index:-1; pointer-events:none;
+}
+
+nav{
+  position:fixed; width:100%; top:0; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 8%;
+  backdrop-filter:blur(20px);
+  background:rgba(6,9,16,.75);
+  border-bottom:1px solid var(--border);
+}
+.logo{ font-size:1.5rem; font-weight:800; color:var(--accent); }
+nav ul{ display:flex; list-style:none; gap:28px; }
+nav a{ text-decoration:none; color:var(--muted); font-size:.9rem; font-weight:500; transition:.25s; }
+nav a:hover{ color:var(--accent); }
+
+.hero{
+  min-height:100vh; display:flex; justify-content:center; align-items:center;
+  text-align:center; padding:120px 20px 80px;
+}
+.hero-content{ max-width:720px; }
+.greeting{ color:var(--accent); font-size:.95rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }
+.hero h1{ font-size:clamp(2.6rem,6vw,4rem); font-weight:800; line-height:1.1; margin-bottom:12px; }
+.hero h1 span{ background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero h3{ color:#94a3b8; font-weight:400; font-size:1rem; margin-bottom:18px; }
+.hero p{ color:var(--muted); line-height:1.8; font-size:.95rem; }
+.hero-buttons{ margin-top:32px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.btn{ padding:12px 26px; background:var(--accent); color:#060910; border-radius:10px; font-weight:700; text-decoration:none; font-size:.9rem; transition:.25s; }
+.btn:hover{ transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,229,176,.25); }
+.btn-outline{ padding:12px 26px; border:1px solid var(--accent2); color:var(--accent2); border-radius:10px; text-decoration:none; font-size:.9rem; font-weight:600; transition:.25s; }
+.btn-outline:hover{ background:rgba(124,92,252,.1); transform:translateY(-3px); }
+
+section{ padding:80px 10%; }
+.section-title{ text-align:center; font-size:2rem; font-weight:800; margin-bottom:40px; }
+.section-title span{ background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+.about-box{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:40px;
+  display:flex; gap:36px; align-items:center;
+}
+.about-box img{
+  width:220px; height:220px; object-fit:cover; border-radius:50%;
+  border:3px solid var(--accent); flex-shrink:0;
+}
+.about-text p{ color:var(--muted); line-height:1.9; font-size:.95rem; }
+
+.skills{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px; }
+.skill{
+  background:var(--card); border:1px solid var(--border);
+  padding:22px 16px; text-align:center; border-radius:14px;
+  font-size:.9rem; font-weight:500; transition:.3s;
+}
+.skill:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-6px); box-shadow:0 8px 24px rgba(0,229,176,.1); }
+
+.projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+.project{
+  background:var(--card); border-radius:16px; overflow:hidden;
+  border:1px solid var(--border); transition:.3s;
+}
+.project:hover{ transform:translateY(-8px); border-color:rgba(124,92,252,.4); box-shadow:0 16px 40px rgba(0,0,0,.35); }
+.project-thumb{
+  height:180px; display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem; background:linear-gradient(135deg,#0d1a2e,#0a1020);
+}
+.project-content{ padding:22px; }
+.project-content h3{ font-size:1rem; font-weight:700; margin-bottom:8px; }
+.project-content p{ color:var(--muted); font-size:.875rem; line-height:1.6; }
+
+.resume-box{
+  text-align:center; background:var(--card);
+  border:1px solid var(--border); padding:50px; border-radius:20px;
+  position:relative; overflow:hidden;
+}
+.resume-box::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 60% at 70% 50%, rgba(124,92,252,.08), transparent);
+  pointer-events:none;
+}
+.resume-box p{ color:var(--muted); margin-bottom:24px; font-size:.95rem; }
+
+.contact-box{
+  text-align:center; background:var(--card);
+  border:1px solid var(--border); padding:40px; border-radius:20px;
+}
+.contact-item{
+  display:inline-flex; align-items:center; gap:10px;
+  margin:10px 20px; color:var(--muted); font-size:.95rem;
+}
+.contact-icon{
+  width:36px; height:36px; background:rgba(0,229,176,.08);
+  border:1px solid rgba(0,229,176,.2); border-radius:8px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:.9rem;
+}
+
+footer{
+  text-align:center; padding:28px;
+  color:var(--muted); font-size:.85rem;
+  border-top:1px solid var(--border);
+}
+
+@media(max-width:768px){
+  .hero h1{ font-size:2.4rem; }
+  .about-box{ flex-direction:column; text-align:center; }
+  nav ul{ gap:14px; }
+  nav{ flex-direction:column; gap:10px; }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Sumit.</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="greeting">👋 Hello, I'm</p>
+    <h1>Sumit <span>Thakur</span></h1>
+    <h3>Computer Science Student · JavaScript & DSA · Aspiring Web Developer</h3>
+    <p>Passionate CSE student at Ujjain Engineering College. I enjoy building projects, solving coding problems and learning modern web technologies.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">View Projects</a>
+      <a href="#contact" class="btn-outline">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title"><span>About Me</span></h2>
+  <div class="about-box">
+    <img src="https://i.ibb.co/YBfQpyyd/IMG-20260315-WA0009.jpg" alt="Sumit Thakur">
+<div class="about-text">
+      <p>I am a B.Tech Computer Science Engineering student (2024–2028) at Ujjain Engineering College, Ujjain. Currently in my 4th semester, I am focusing on JavaScript, Data Structures & Algorithms, Web Development and Software Engineering.<br><br>
+      I enjoy creating responsive websites, learning new technologies and improving my problem-solving abilities through hands-on projects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title"><span>Skills</span></h2>
+  <div class="skills">
+    <div class="skill">HTML5</div>
+    <div class="skill">CSS3</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">Python</div>
+    <div class="skill">C Programming</div>
+    <div class="skill">MySQL</div>
+    <div class="skill">DSA</div>
+    <div class="skill">Problem Solving</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title"><span>Projects</span></h2>
+  <div class="projects">
+    <div class="project">
+      <div class="project-thumb">🌐</div>
+      <div class="project-content">
+        <h3>Portfolio Website</h3>
+        <p>Responsive portfolio built using HTML and CSS.</p>
+      </div>
+    </div>
+    <div class="project">
+      <div class="project-thumb">🎮</div>
+      <div class="project-content">
+        <h3>Number Guessing Game</h3>
+        <p>Interactive Python game with difficulty levels.</p>
+      </div>
+    </div>
+    <div class="project">
+      <div class="project-thumb">🚀</div>
+      <div class="project-content">
+        <h3>Upcoming Projects</h3>
+        <p>More projects will be added soon — stay tuned!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <h2 class="section-title"><span>Resume</span></h2>
+  <div class="resume-box">
+    <p>Download my latest resume to know more about my education and skills.</p>
+    <a href="Resume.pdf" class="btn" download>⬇ Download Resume</a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title"><span>Contact</span></h2>
+  <div class="contact-box">
+    <div class="contact-item"><span class="contact-icon">📧</span> sumitthakurkgn@gmail.com</div>
+    <div class="contact-item"><span class="contact-icon">📱</span> +91 9826853228</div>
+    <div class="contact-item"><span class="contact-icon">📍</span> Ujjain, Madhya Pradesh</div>
+  </div>
+</section>
+
+<footer>© 2026 Sumit Thakur | All Rights Reserved</footer>
+
+</body>
+</html>
